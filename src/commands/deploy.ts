@@ -1,6 +1,6 @@
 import { basename, dirname, isAbsolute, join } from 'path'
 import { exec } from "child_process"
-import { fstat, readFileSync, writeFileSync } from "fs"
+import { readFileSync, writeFileSync } from "fs"
 import { parse, stringify } from "yaml"
 
 export default (argv) => {
@@ -35,6 +35,8 @@ export default (argv) => {
       const variableKey = entry[0]
       const variableValue = entry[1] as string
 
+      if (!variableValue.includes('${')) return variableToAssign
+
       const varValue = variableValue.substring(
         variableValue.lastIndexOf("{") + 1, 
         variableValue.lastIndexOf("}")
@@ -44,6 +46,20 @@ export default (argv) => {
     }) 
 
     workflowConfig.main.steps[assignmentStepIndex] = assignmentStep
-    writeFileSync(workflowDefinitionPath, stringify(workflowConfig), { encoding: 'utf-8' })
+    const tmpPath: string = join(`/tmp/${basename(workflowDefinitionPath)}.yml`) 
+    writeFileSync(tmpPath, stringify(workflowConfig), { encoding: 'utf-8' })
+    const command = `gcloud workflows deploy ${workflow.name} --source=${tmpPath}` 
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+      }
+
+      console.log(`stdout: ${stdout}`);
+    })
   })
 }

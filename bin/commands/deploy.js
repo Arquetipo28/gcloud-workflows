@@ -29,12 +29,15 @@ exports.default = (argv) => {
             const entry = Object.entries(variableToAssign)[0];
             const variableKey = entry[0];
             const variableValue = entry[1];
+            if (!variableValue.includes('${'))
+                return variableToAssign;
             const varValue = variableValue.substring(variableValue.lastIndexOf("{") + 1, variableValue.lastIndexOf("}"));
             variableToAssign[variableKey] = eval(varValue);
         });
         workflowConfig.main.steps[assignmentStepIndex] = assignmentStep;
-        fs_1.writeFileSync(workflowDefinitionPath, yaml_1.stringify(workflowConfig), { encoding: 'utf-8' });
-        const command = `gcloud workflows deploy ${workflow.name} --source=${workflowDefinitionPath}`;
+        const tmpPath = path_1.join(`/tmp/${path_1.basename(workflowDefinitionPath)}.yml`);
+        fs_1.writeFileSync(tmpPath, yaml_1.stringify(workflowConfig), { encoding: 'utf-8' });
+        const command = `gcloud workflows deploy ${workflow.name} --source=${tmpPath}`;
         child_process_1.exec(command, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
@@ -48,4 +51,4 @@ exports.default = (argv) => {
         });
     });
 };
-//# sourceMappingURL=create.js.map
+//# sourceMappingURL=deploy.js.map

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-import create from './commands/create'
+import deploy from './commands/deploy'
 
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 
 yargs(hideBin(process.argv))
-  .command('create', 'create a workflow based on a yml configuration file', (yargs) => {
+  .command('deploy', 'deploy a workflow based on a yml configuration file', (yargs) => {
   }, (argv: any) => {
-    create(argv)
+    deploy(argv)
   })
   .option('path', {
     alias: 'p',
