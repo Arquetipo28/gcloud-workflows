@@ -1,5 +1,5 @@
 {
-  "name": "gcloud-topics",
+  "name": "gcloud-workflows",
   "version": "1.0.1",
   "description": "A gcloud utility built on top of gcloud to create and manage workflows",
   "main": "bin/index.js",
