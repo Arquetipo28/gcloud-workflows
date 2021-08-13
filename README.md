@@ -44,7 +44,7 @@ workflows:
 
 * `assignationStep` property defines the name of the step that will contain the variables assignation, it can be defined globally for all workflows or singularly to apply on one specific workflow
 
-## Example Workflow
+**Example Workflow**
 ```yaml
 main:
   params:
