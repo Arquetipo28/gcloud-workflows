@@ -42,7 +42,7 @@ workflows:
     source: [source-file]
 ```
 
-* `assignationStep` property defines the name of the step that will contain the variables assignation, it can be defined globally for all workflows or singularly to apply on one specific workflow
+* `assignationStep` property defines the name of the step that will contain the variables assignation, it can be defined globally for all workflows or locally to apply on one specific workflow
 
 **Example Workflow**
 ```yaml
@@ -57,10 +57,10 @@ main:
 ```
 
 ## Considerations
+* assignationStep property is required, can be global to apply for any workflow or local to apply on a specific one
 * variables inside assignation step must be enclosed with `${}`as shown in the [example](#example-workflow)
-* if assignation step contains variables that doesn't have to be parsed they cannot contan the following characters `${}`
+* if the assignation step contains variables that doesn't have to be parsed they cannot use any of the following characters `${}`
 * All workflows must be nested inside a `main` root
-* assignationStep property is required, can be globally or locally for each workflow
 * the resultant parsed file will be stored in `/tmp/[workflow-source.yml]`
 
 ## Next Changes
@@ -68,4 +68,3 @@ main:
 * Add examples
 * Add tests for deploy command
 * Enable root configuration
-* Validate existent topics before creation
