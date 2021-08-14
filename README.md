@@ -40,6 +40,7 @@ assignationStep: [string*]
 workflows:
   - name: [workflow-name-or-id]
     source: [source-file]
+    assignationStep: [optional string]
 ```
 
 * `assignationStep` property defines the name of the step that will contain the variables assignation, it can be defined globally for all workflows or locally to apply on one specific workflow
@@ -68,3 +69,4 @@ main:
 * Add examples
 * Add tests for deploy command
 * Enable root configuration
+* Fix tmp file storage
