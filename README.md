@@ -6,6 +6,9 @@
 * [Usage](#usage)
 * [Next Changes](#next-changes)
 
+## Advertisement
+This tool is not part of the official @google-cloud packages and it does not replace the [@google-cloud/workflows](https://www.npmjs.com/package/@google-cloud/workflows). Internally this tool uses [gcloud](https://cloud.google.com/sdk/gcloud) and the workflows related commands.
+
 ## Overview
 
 This tool was created with the main purpose of facilitating the deployment process and continuous integration, in addition to proposing a tool to facilitate the management of this resource as well as to provide a way to implement environment variables into the workflows deployment process.
