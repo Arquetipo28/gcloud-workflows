@@ -22,7 +22,7 @@ Currently this package only implements a `deploy` method
 ### Deploy
 built on top of `gcloud deploy`
 
-deploy method allow you to deploy one or more workflows using a definition yaml file, it receives a `path` argument which contains a set of instructions as the project id and the workflows to dpeloy, each workflow should contain the name or id with which it will be deployed and the source file, which can be either an absolute or relative path.
+deploy method allow you to deploy one or more workflows using a definition yaml file, it receives a `path` argument which contains a set of instructions as the project id and the workflows to deploy, each workflow should contain the name or id with which it will be deployed and the source file, which can be either an absolute or relative path.
 
 **Sample**
 ```shell
